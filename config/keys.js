@@ -9,6 +9,6 @@ module.exports = {
             dbURI: 'mongodb://db_usr:db_pass1@ds241570.mlab.com:41570/hometasks'
         },
         session: {
-            cookieKey: 'thenetninjaisawesomeiguess'
+            cookieKey: 'hometasksapp'
         }
 };

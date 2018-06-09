@@ -3,9 +3,11 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
+const statisticsRoutes = require('./routes/statistics-routes');
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
+const UserDAO = require('./models/userDAO');
 
 const app = express();
 
@@ -33,11 +35,18 @@ mongoose.connection.openUri(keys.mongodb.dbURI, () => {
 // set up routes
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
+app.use('/statistics', statisticsRoutes);
+app.get('/getWeeklyScores', (req, res) => {
+  UserDAO.getWeeklyScores().then(data=>res.json(data));
+});
+
 
 // create home route
 app.get('/', (req, res) => {
     res.render('home', { user: req.user });
 });
+
+
 
 app.listen(3030, () => {
     console.log('app now listening for requests on port 3030');

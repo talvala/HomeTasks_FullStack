@@ -2,7 +2,10 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>OAuth Tutorials</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://cdnjs.cloudflare.com ">
+
+
+        <title>Homepage</title>
         <style>
             body{
                 font-family: arial;
@@ -36,27 +39,35 @@
                 padding: 0 10px;
                 color: #333;
             }
+            main img{
+                width: 40px;
+                margin-right: 10px;
+                position: relative;
+                top: 12px;
+            }
+            main p{
+                display: inline-block;
+            }
         </style>
     </head>
     <body>
-        <nav>
-            <ul>
-                <% if (user) { %>
-                <li><a href="/auth/logout">Log out</a></li>
-                <% } else { %>
-                <li><a href="/auth/login">Login</a></li>
-                <% } %>
-                <li><a href="/">Homepage</a></li>
-                <li><a href="/profile">Profile</a></li>
-                <li><a href="/statistics">Statistics</a></li>
-            </ul>
-        </nav>
+    <nav>
+        <ul>
+            <% if (user) { %>
+            <li><a href="/auth/logout">Log out</a></li>
+            <% } else { %>
+            <li><a href="/auth/login">Login</a></li>
+            <% } %>
+            <li><a href="/">Homepage</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/statistics">Statistics</a></li>
+        </ul>
+    </nav>
         <header>
-            <h1>Home Tasks</h1>
-            <h2>Homepage</h2>
+            <h1>Statistics</h1>
         </header>
         <main>
-            <p>Welcome. Sign In to continue.</p>
+            <a href="./getWeeklyScores" target="_blank"> get weekly score</a>
         </main>
     </body>
 </html>

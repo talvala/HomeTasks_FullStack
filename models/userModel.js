@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     username: String,
     googleId: String,
-    thumbnail: String
+    thumbnail: String,
+    scores: Number
 });
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
