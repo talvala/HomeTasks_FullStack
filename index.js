@@ -71,6 +71,29 @@ app.get('/addNewTasks', (req, res) => {
   TasksDAO.addNewTask().then(data=>res.json(data));
 });
 
+//Tal:
+app.get('/getUserProfileSummary', (req, res) => {
+  //get user google id
+  // var usr = req.user;
+  // var usrname = usr.googleId;
+  UserDAO.getUserProfileSummary().then(data=>res.json(data));
+});
+app.get('/getUserCompletedTasks', (req, res) => {
+  UserDAO.getUserCompletedTasks().then(data=>res.json(data));
+});
+app.get('/getUserSavedTasks', (req, res) => {
+  UserDAO.getUserSavedTasks().then(data=>res.json(data));
+});
+app.get('/getUserAchievments', (req, res) => {
+  UserDAO.getUserAchievments().then(data=>res.json(data));
+});
+app.get('/getAllScores', (req, res) => {
+  UserDAO.getAllScores().then(data=>res.json(data));
+});
+app.get('/getAllAvailableTasks', (req, res) => {
+  TaskDAO.getAllAvailableTasks().then(data=>res.json(data));
+});
+
 app.route('/getAllTasks')
   .get(todoList.list_all_tasks);
 

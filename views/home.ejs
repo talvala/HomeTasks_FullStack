@@ -53,12 +53,28 @@
             </ul>
         </nav>
         <header>
-            <h1>Home Tasks</h1>
-            <h2>Homepage</h2>
+            <h1>Homepage</h1>
         </header>
         <main>
-            <p>Welcome. Sign In to continue.</p>
-            <a href="./addNewTask"> Add New Task</a>
+            <div class="col-lg-10">
+            <h2><u> Users status</u></h2>
+                <section>
+                <h3>Get All Users Scores</h3>
+                <p>Method: GET<br>
+                Request URL: <a href="./getAllScores" target="_blank">
+                            https://hometasks.herokuapp.com/mostPointsThisWeek </a><br>
+                Response: JSON sorted by weekly points.</p>
+            </section>
+            <br>
+            <section>
+                <h3>More Things To Do</h3>
+                <p>Method: GET<br>
+                Request URL: <a href="./getAllAvailableTasks" target="_blank">
+                        https://hometasks.herokuapp.com/mostTasksDoneSoFar </a><br>
+                            Response: JSON of Most Tasks done so far.</p>
+            </section>
+                <br>
+                </div>
         </main>
     </body>
 </html>

@@ -63,11 +63,43 @@
             </ul>
         </nav>
         <header>
-            <h1>Welcome to your profile, <%= user.username %></h1>
+            <h1>Profile</h1>
         </header>
         <main>
-            <img src="<%= user.thumbnail %>" />
-            <p>This is your profile thumbnail</p>
+            <div class="col-lg-10">
+            <h2><u> User Information</u></h2>
+                <section>
+                <h3>Profile</h3>
+                <p>Method: GET<br>
+                Request URL: <a href="./getUserProfileSummary" target="_blank">
+                            https://hometasks.herokuapp.com/mostPointsThisWeek </a><br>
+                Response: JSON sorted by weekly points.</p>
+            </section>
+            <br>
+            <section>
+                <h3>Completed Tasks</h3>
+                <p>Method: GET<br>
+                Request URL: <a href="./getUserCompletedTasks" target="_blank">
+                        https://hometasks.herokuapp.com/mostTasksDoneSoFar </a><br>
+                            Response: JSON of Most Tasks done so far.</p>
+            </section>
+                <br>
+                <section>
+                    <h3>Saved Tasks</h3>
+                    <p>Method: GET<br>
+                        Request URL: <a href="./getUserSavedTasks" target="_blank">
+                            https://hometasks.herokuapp.com/TasksPerDay </a><br>
+                        Response: JSON of Most Tasks done so far.</p>
+                </section>
+                <br>
+                <section>
+                    <h3>Achievments</h3>
+                    <p>Method: GET<br>
+                        Request URL: <a href="./getUserAchievments" target="_blank">
+                            https://hometasks.herokuapp.com/TheMedalists </a><br>
+                        Response: JSON of Most Tasks done so far.</p>
+                </section>
+                </div>
         </main>
     </body>
 </html>
