@@ -5,9 +5,15 @@ const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
 const statisticsRoutes = require('./routes/statistics-routes');
 const passportSetup = require('./config/passport-setup');
+const tasksRoutes = require('./routes/tasks-routes');
+
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const UserDAO = require('./models/userDAO');
+const TasksDAO = require('./models/tasksDAO');
+const todoList = require('./config/tasks-setup');
+
+bodyParser = require('body-parser');
 
 const app = express();
 
@@ -31,14 +37,52 @@ mongoose.connection.openUri(keys.mongodb.dbURI, () => {
     console.log('connected to mongodb');
 	
 });
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+//for debug
+/*app.use(function(req, res) {
+  res.status(404).send({url: req.originalUrl + ' not found'})
+});*/
 
 // set up routes
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
 app.use('/statistics', statisticsRoutes);
-app.get('/getWeeklyScores', (req, res) => {
-  UserDAO.getWeeklyScores().then(data=>res.json(data));
+app.use('/tasks', tasksRoutes);
+
+
+app.get('/mostPointsThisWeek', (req, res) => {
+  UserDAO.mostPointsThisWeek().then(data=>res.json(data));
 });
+app.get('/mostTasksDoneSoFar', (req, res) => {
+  UserDAO.mostTasksDoneSoFar().then(data=>res.json(data));
+});
+
+app.get('/TasksPerDay', (req, res) => {
+  UserDAO.TasksPerDay().then(data=>res.json(data));
+});
+
+app.get('/TheMedalists', (req, res) => {
+  UserDAO.TheMedalists().then(data=>res.json(data));
+});
+
+app.get('/addNewTasks', (req, res) => {
+  TasksDAO.addNewTask().then(data=>res.json(data));
+});
+
+app.route('/getAllTasks')
+  .get(todoList.list_all_tasks);
+
+// todoList Routes
+app.route('/createTask')
+  .post(todoList.create_a_task);
+
+app.route('/tasks/:taskId')
+  .get(todoList.read_a_task)
+  .put(todoList.update_a_task)
+  .delete(todoList.delete_a_task);
+
 
 
 // create home route

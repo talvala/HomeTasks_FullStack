@@ -1,12 +1,26 @@
 
 User = require('../models/userModel');
-
+Tasks = require('../models/tasksModel');
 
 
 module.exports = class userDAO {
-    static getWeeklyScores() {
-    	console.log("5555555555555555555555555555");
-        return User.find()
-                    .catch(() => error("bla"));
+    static mostPointsThisWeek() {
+        return User.find(req.user).sort({scores: 'desc'})
+                   .catch(() => error("bla"));
     }
+
+  static mostTasksDoneSoFar() {
+    return User.find().sort({scores: 'desc'})
+      .catch(() => error("bla"));
+  }
+
+  static TasksPerDay() {
+    return User.find({}, 'name scores')
+      .catch(() => error("bla"));
+  }
+
+  static TheMedalists() {
+    return User.find().sort({scores: 'desc'})
+      .catch(() => error("bla"));
+  }
 };
